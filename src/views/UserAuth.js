@@ -5,8 +5,8 @@ import UserSignUp from '../components/userSignUp'
 function UserAuth() {
     return (
         <>
-            <UserLogin />
-            {/* <UserSignUp/> */}
+            {/* <UserLogin /> */}
+            <UserSignUp/>
         </>
     )
 }

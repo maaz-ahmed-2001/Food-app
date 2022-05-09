@@ -4,6 +4,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
 import LoginBackground from "../assets/images/login-background.jpg"
+import { Link } from 'react-router-dom';
 
 
 export default function UserLogin() {
@@ -17,9 +18,9 @@ export default function UserLogin() {
   return (
     <>
       <Grid className='background'>
-        <Grid item xs={10} sm={10} md={8} lg={6} className="side-img-con" >
+        {/* <Grid item xs={10} sm={10} md={8} lg={6} className="side-img-con" >
             <img src={LoginBackground} alt="login-background" className='form-side-img' />
-        </Grid>
+        </Grid> */}
         <Grid item xs={10} sm={10} md={8} lg={6} >
           <div className="form-container">
             <div className="form">
@@ -52,7 +53,7 @@ export default function UserLogin() {
                 <span>Login with Facebook </span> 
                 <FacebookOutlined sx={{fontSize:"25px"}}/>
               </button>
-              <div className='acc-link'>Don't have an account? <b>Create one</b></div>
+              <div className='acc-link'>Don't have an account? <Link to="/customerSignup">Create one</Link></div>
               
               {/* <p className="account">Don't have an account ? <Link to="/signup" className="account-link">Create one</Link></p> */}
               <button className="form-btn"

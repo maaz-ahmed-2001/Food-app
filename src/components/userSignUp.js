@@ -4,6 +4,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
 import LoginBackground from "../assets/images/login-background.jpg"
+import { Link } from 'react-router-dom';
 
 
 export default function UserSignUp() {
@@ -23,7 +24,7 @@ export default function UserSignUp() {
         <Grid item xs={10} sm={10} md={8} lg={6} >
           <div className="form-container">
             <div className="form">
-              <h1 className='title'>Hungry ? Login and Order now</h1>
+              <h1 className='title' style={{marginTop:"30px"}}>Create your account and browse your favourite food.</h1>
               <div className='inp-container'>
                 <label htmlFor='name'>Full name :</label>
                 <br />
@@ -77,7 +78,7 @@ export default function UserSignUp() {
                 <span>Continue with Facebook </span> 
                 <FacebookOutlined sx={{fontSize:"25px"}}/>
               </button>
-              <div className='acc-link'>Already have an account? <b>Login</b></div>
+              <div className='acc-link'>Already have an account? <Link to="/customerLogin">Login</Link></div>
               
               {/* <p className="account">Don't have an account ? <Link to="/signup" className="account-link">Create one</Link></p> */}
               <button className="form-btn signup"

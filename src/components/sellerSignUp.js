@@ -5,7 +5,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
 
 
-export default function UserSignUp() {
+export default function SellerSignUp() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [showPass, setShowPass] = useState(false)

@@ -6,6 +6,9 @@
   font-family: "Open Sans";
   
 }
+.App{
+  min-height: 100vh;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -14,7 +17,13 @@ input::-webkit-inner-spin-button {
 }
 
 .background{
-  height: 100vh;
+  background-image: url("./assets/images/login-background.jpg");
+  /* background-size: 100% 100%; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  max-width: fit-content;
   min-width: 100% !important;
   display: flex;
   justify-content: end;
@@ -31,9 +40,12 @@ input::-webkit-inner-spin-button {
   font-weight: 500;
   color: rgb(230, 160, 70);
   text-align: center;
+  font-size: 28px;
   text-shadow: 1px 1px 3px rgb(145, 71, 3);
   min-width: 300px;
+  max-width: 350px;
   margin-bottom: 50px;
+  /* margin-top: 50px; */
 }
 .inp-container{
   text-align: left;
@@ -53,9 +65,8 @@ input::-webkit-inner-spin-button {
 }
 
 label{
-  font-weight: 400;
+  font-weight: 600;
   color: rgb(230, 160, 70);
-  text-shadow: 1px 1px 1px rgb(145, 71, 3);
   letter-spacing: 0.03em;
 }
 
@@ -114,13 +125,12 @@ label{
 }
 .form-container {
   background-color: rgba(255, 255, 255, 1);
-  height: 100vh;
+  min-height: 100vh;
   width: 40vw;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  /* overflow-y: scroll; */
 }
 .form{
   text-align: center;
@@ -145,11 +155,13 @@ label{
   font-size: 14px;
   font-weight: 500;
 }
-.acc-link b {
+.acc-link a {
   color: rgb(230, 160, 70);
   cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
 }
-.acc-link b:hover , .forgot-pass p:hover{
+.acc-link a:hover , .forgot-pass p:hover{
   text-decoration: underline;
 
 }
@@ -158,4 +170,65 @@ label{
   font-weight: 600;
   color: rgb(230, 160, 70);
   cursor: pointer;
+}
+
+
+.home-background{
+
+
+}
+.home-background-img-chef{
+  background-image: url("./assets/images/chef.jpg");
+  height: 100vh;
+  width: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction:column !important;
+  justify-content: center;
+  align-items: center
+
+  
+}
+.home-background-img-person{
+
+  background-image: url("./assets/images/person.jpg");
+  height: 100vh;
+  width: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+
+}
+.home-title{
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+.home-title h1 {
+  color: rgb(230, 160, 70);
+  text-shadow: 0px 0px 3px black;
+  margin-bottom: 10px;
+  font-size: 56px;
+  font-weight: 600;
+}
+.home-title h3{
+  color: rgb(145, 71, 3);
+  text-shadow: 0px 0px 2px black;
+  font-size: 24px;
+}
+.home-btn{
+  margin: 0px;
+}
+.img-title{
+  margin-bottom: 30px;
+  color: #fff;
+  text-shadow: 0px 0px 5px black;
+  font-size: 26px;
 }
