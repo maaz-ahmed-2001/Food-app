@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
-import LoginBackground from "../assets/images/login-background.jpg"
 import { Link } from 'react-router-dom';
 
 
@@ -15,7 +14,17 @@ export default function UserSignUp() {
   const [name, setName] = useState("")
   const [cellNum, setCellNum] = useState("")
   const [city, setCity] = useState("")
+  const [error, setError] = useState("")
 
+  const submitHandler = async() => {
+    if(confirmPassword !== password){
+      setError("Passwords donot match")
+      console.log(error)
+    }
+    if(confirmPassword === password){
+
+    }
+  }
 
 
   return (
@@ -24,7 +33,7 @@ export default function UserSignUp() {
         <Grid item xs={10} sm={10} md={8} lg={6} >
           <div className="form-container">
             <div className="form">
-              <h1 className='title' style={{marginTop:"30px"}}>Create your account and browse your favourite food.</h1>
+              <h1 className='title'>Create your account and browse your favourite food.</h1>
               <div className='inp-container'>
                 <label htmlFor='name'>Full name :</label>
                 <br />
@@ -82,7 +91,7 @@ export default function UserSignUp() {
               
               {/* <p className="account">Don't have an account ? <Link to="/signup" className="account-link">Create one</Link></p> */}
               <button className="form-btn signup"
-                onClick={() => { }}
+                onClick={() => { submitHandler() }}
               >Create account</button>
             </div>
           </div>

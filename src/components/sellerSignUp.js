@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 
 export default function SellerSignUp() {
@@ -12,18 +13,28 @@ export default function SellerSignUp() {
   const [email, setEmail] = useState("")
   const [shopName, setShopName] = useState("")
   const [city, setCity] = useState("")
+  const [error, setError] = useState("")
 
+  const submitHandler = async() => {
+    if(confirmPassword !== password){
+      setError("Passwords donot match")
+      console.log(error,"error")
+    }
+    if(confirmPassword === password){
+      console.log("passwords match ",error)
+    }
+  }
 
 
   return (
     <>
-      <Grid className='background'>
+      <Grid className='background-chef'>
         <Grid item xs={10} sm={10} md={8} lg={6} >
           <div className="form-container">
             <div className="form">
-              <h1 className='title'>Hungry ? Login and Order now</h1>
+              <h1 className='title'>Good at cooking? Grow your business with us.</h1>
               <div className='inp-container'>
-                <label htmlFor='shop-name'>Full name :</label>
+                <label htmlFor='shop-name'>Shop name :</label>
                 <br />
                 <input type="text" id="shop-name" value={shopName} onChange={(event) => setShopName(event.target.value)} placeholder="Shop name" className="inp" />
               </div>
@@ -71,11 +82,11 @@ export default function SellerSignUp() {
                 <span>Continue with Facebook </span> 
                 <FacebookOutlined sx={{fontSize:"25px"}}/>
               </button>
-              <div className='acc-link'>Already have an account? <b>Login</b></div>
+              <div className='acc-link'>Already have an account? <Link to="/sellerLogin">Login</Link></div>
               
               {/* <p className="account">Don't have an account ? <Link to="/signup" className="account-link">Create one</Link></p> */}
               <button className="form-btn signup"
-                onClick={() => { }}
+                onClick={() => { submitHandler() }}
               >Create account</button>
             </div>
           </div>

@@ -16,7 +16,7 @@ function Home() {
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6} className='home-background-img-chef' >
         <h2 className='img-title'>Are you a chef ?</h2>
-        <button className='form-btn home-btn' onClick={()=>navigate("/chefLogin")}>Continue as Chef</button>
+        <button className='form-btn home-btn' onClick={()=>navigate("/sellerLogin")}>Continue as Chef</button>
       </Grid>
     </Grid>
   )
