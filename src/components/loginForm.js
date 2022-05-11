@@ -2,13 +2,17 @@ import React,{useState} from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 
 function LoginForm(props) {
+    const navigate = useNavigate()
     const [password, setPassword] = useState("")
     const [showPass, setShowPass] = useState(false)
     const [email, setEmail] = useState("")
-
+    const submitHandler = () => {
+      navigate(`/${props.landing}Home`)
+  
+    }
   return (
     <div className="form-container">
             <div className="form">
@@ -41,11 +45,11 @@ function LoginForm(props) {
                 <span>Login with Facebook </span> 
                 <FacebookOutlined sx={{fontSize:"25px"}}/>
               </button>
-              <div className='acc-link'>Don't have an account? <Link to={`/${props.link}`}>Create one</Link></div>
+              <div className='acc-link'><span>Don't have an account?</span> <Link to={`/${props.link}`}>Create one</Link></div>
               
               
               <button className="form-btn"
-                onClick={() => { }}
+                onClick={() => { submitHandler() }}
               >Login</button>
             </div>
           </div>

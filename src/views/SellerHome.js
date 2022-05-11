@@ -1,10 +1,10 @@
 import React from 'react'
 
-function SellerAuth() {
+function SellerHome() {
   return (
     <>
     </>
   )
 }
 
-export default SellerAuth
+export default SellerHome

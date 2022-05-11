@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import { FacebookOutlined, Google } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 
 
 export default function UserSignUp() {
+  const navigate = useNavigate()
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [showPass, setShowPass] = useState(false)
@@ -24,12 +25,13 @@ export default function UserSignUp() {
     if(confirmPassword === password){
 
     }
+    navigate("/sellerHome")
   }
 
 
   return (
     <>
-      <Grid className='background'>
+      <Grid className='background bg-customer'>
         <Grid item xs={10} sm={10} md={8} lg={6} >
           <div className="form-container">
             <div className="form">
@@ -87,7 +89,7 @@ export default function UserSignUp() {
                 <span>Continue with Facebook </span> 
                 <FacebookOutlined sx={{fontSize:"25px"}}/>
               </button>
-              <div className='acc-link'>Already have an account? <Link to="/customerLogin">Login</Link></div>
+              <div className='acc-link'><span>Already have an account? </span> <Link to="/customerLogin">Login</Link></div>
               
               {/* <p className="account">Don't have an account ? <Link to="/signup" className="account-link">Create one</Link></p> */}
               <button className="form-btn signup"
