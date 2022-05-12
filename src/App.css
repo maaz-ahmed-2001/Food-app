@@ -256,35 +256,28 @@ label{
 
 /********************* Customer Pages ************************/
 .user-homepage-container{
-  justify-content: space-evenly;
   flex-direction: column !important;
 }
 .appbar{
   background-color: rgb(230, 160, 70) !important;
 }
 .card-container{
-  
   box-shadow: 0px 5px 10px grey !important;
   flex-grow: 1;
-  max-width: 220px;
-  min-width: 150px;
 }
 .home-title-container{
   border-bottom: 2px solid rgb(230, 160, 70);
-  margin: 0 auto;
-  padding: 20px 0;
-  width: 95vw;
   display: flex;
+  margin: 0 auto;
+  width: 95vw;
+  padding: 20px 0px;
   justify-content: space-between;
   align-items: center;
-}
-.home-title-container .title{
-  margin: 0;
-  text-align: left;
+  margin-bottom: 20px;
 }
 .cards-holder{
-  margin: 30px auto ;
-  gap: 15px;
+  width: 95vw !important;
+  margin-left: 0 !important;
 }
 #demo-simple-select-helper-label{
   color: rgb(230, 160, 70) !important;
@@ -294,11 +287,7 @@ label{
 }
 .filter-select{
   border-color: rgb(230, 160, 70) !important;
-
 }
-/* .MuiOutlinedInput-rootMuiInputBase-rootMuiInputBase-colorPrimaryMuiInputBase-formControlMuiInputBase-sizeSmallcss-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-  border-color: rgb(230, 160, 70) !important;
-} */
 
 @media screen and (max-width:768px) {
   .bg-chef,.bg-customer{
@@ -306,6 +295,9 @@ label{
   }
   .form-container{
     padding: 0px 40px;
+  }
+  #demo-simple-select-helper-label,#demo-simple-select-helper{
+  font-size: 12px;
   }
 }
 
@@ -318,7 +310,6 @@ label{
   .title,label,.forgot-pass,.acc-link{
     text-shadow: 1px 1px 2px black;
   }
-  
   .title,label,.acc-link span{
     color: #fff;
   }
@@ -330,8 +321,8 @@ label{
   }
   .card-container{
     justify-content: start;
-    max-width: 90vw !important;
-    min-width: 80vw !important;
   }
-  
+}
+@media screen and (max-width:425px) {
+
 }
