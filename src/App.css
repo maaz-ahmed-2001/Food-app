@@ -7,12 +7,11 @@
   
 }
 *::-webkit-scrollbar{
-  width: 1.1vw;
+  width: .7vw;
 }
 *::-webkit-scrollbar-thumb{
   background-color: rgb(230, 160, 70);
   border-radius: 10px;
-  width: 1vw;
 }
 *::-webkit-scrollbar-thumb:hover{
   background-color: rgb(145, 71, 3);
@@ -277,7 +276,10 @@ label{
 }
 .cards-holder{
   width: 95vw !important;
+  margin-right: 0 !important;
   margin-left: 0 !important;
+  /* margin: 0 auto; */
+  /* justify-content: center; */
 }
 #demo-simple-select-helper-label{
   color: rgb(230, 160, 70) !important;

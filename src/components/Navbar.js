@@ -11,12 +11,15 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 
 
-const pages = ['Home', 'Orders Accepted', 'Orders Pending', 'Orders Rejected'];
-const settings = ['Profile', 'Logout'];
 
-const CustomerNavbar = () => {
+const Navbar = (pages) => {
+  const customerPages = ['Foods','Order Status','Cart'];
+  const sellerPages = ['Add Dish','My Orders','My Dishes'];
+  const settings = ['Profile', 'Logout'];
+  const navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -26,14 +29,43 @@ const CustomerNavbar = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+  const navPages = (e) => {
+    console.log("Navbar", e.target.textContent)
+    if(e.target.textContent === "Foods"){
+      navigate("/userHome")
+    }
+    if(e.target.textContent === "Order Status"){
+      navigate("/orderStatus")
+    }
+    if(e.target.textContent === "Cart"){
+      navigate("/cart")
+    }
+    if(e.target.textContent === "Add Dish"){
+      navigate("/sellerHome")
+    }
+    if(e.target.textContent === "My Orders"){
+      navigate("/myOrders")
+    }
+    if(e.target.textContent === "My Dishes"){
+      navigate("/myDishes")
+    }
+  }
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
+  const settingsFunction = ( e , index ) => {
+    if(e.target.textContent === "Logout"){
+      navigate("/")
+    }
+    else{
+      console.log(e.target.textContent,index)
+      
+    }
+  }
 
   return (
     <AppBar position="static" className='appbar'>
@@ -87,11 +119,14 @@ const CustomerNavbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" className="user-nav-pages">{page}</Typography>
+              {localStorage.getItem("Role") === "customer" ? customerPages.map((page) => (
+                <MenuItem key={page} onClick={navPages}>
+                  <Typography textAlign="center" sx={{fontWeight:600}} >{page}</Typography>
                 </MenuItem>
-              ))}
+              )): sellerPages.map((page) => (
+                <MenuItem key={page} onClick={navPages}>
+                  <Typography textAlign="center" sx={{fontWeight:600}} >{page}</Typography>
+                </MenuItem>)) }
             </Menu>
           </Box>
             {/* Icon here */}
@@ -114,10 +149,18 @@ const CustomerNavbar = () => {
             FoodFreaks
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } ,justifyContent:"center" }}>
-            {pages.map((page) => (
+            {localStorage.getItem("Role")=== "customer" ? customerPages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={navPages}
+                sx={{ my: 2, color: 'white', display: 'block' ,textTransform: 'capitalize' ,fontWeight:500 ,fontSize:"16px" }}
+              >
+                {page}
+              </Button>
+            )):sellerPages.map((page) => (
+              <Button
+                key={page}
+                onClick={navPages}
                 sx={{ my: 2, color: 'white', display: 'block' ,textTransform: 'capitalize' ,fontWeight:500 ,fontSize:"16px" }}
               >
                 {page}
@@ -147,8 +190,8 @@ const CustomerNavbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              {settings.map((setting,index) => (
+                <MenuItem key={setting} onClick={(e)=>settingsFunction( e ,index )}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -159,4 +202,4 @@ const CustomerNavbar = () => {
     </AppBar>
   );
 };
-export default CustomerNavbar;
+export default Navbar;

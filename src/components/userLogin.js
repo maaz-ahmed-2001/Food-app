@@ -7,7 +7,8 @@ export default function UserLogin() {
   const props = {
     title:"Hungry? Login and order now.",
     link:"customerSignup",
-    landing:"user"
+    landing:"user",
+    role:"customer"
   }
 
   return (

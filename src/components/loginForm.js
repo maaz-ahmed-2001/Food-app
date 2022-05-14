@@ -10,6 +10,7 @@ function LoginForm(props) {
     const [showPass, setShowPass] = useState(false)
     const [email, setEmail] = useState("")
     const submitHandler = () => {
+      localStorage.setItem("Role",`${props.role}`)
       navigate(`/${props.landing}Home`)
   
     }

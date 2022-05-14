@@ -6,13 +6,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import biryani from "../assets/images/biryani.jpg"
-import { AddShoppingCart, AttachMoney } from "@mui/icons-material"
+import { AddShoppingCart } from "@mui/icons-material"
 
 
 export default function MediaCard(props) {
   return (
     
-      <Card sx={{}} >
+      <Card sx={{}} elevation={10} >
         <CardMedia
           component="img"
           height="200"
@@ -20,12 +20,12 @@ export default function MediaCard(props) {
           alt="biryani"
         />
         <CardContent className="card-body">
-          <Typography gutterBottom variant="h5" component="div" >
+          <Typography gutterBottom variant="h5" component="div" sx={{color:"rgb(145, 71, 3)",fontWeight:"400"}} >
             {props.dish}
           </Typography>
-          <h3>{props.shop}</h3>
-          <h4><AttachMoney /> Rs. {props.price}</h4>
-          <h4>Delivery type: {props.deliveryType}</h4>
+          <Typography sx={{fontSize:"20px",fontWeight:"600"}} varinat="h5" component="div">{props.shop}</Typography>
+          <Typography sx={{color:"red",fontSize:"18px"}} varinat="p" component="div">Rs. {props.price}</Typography>
+          <Typography sx={{color:"grey",fontSize:"16px"}} varinat="p" component="div">Delivery Charges : {props.deliveryType}</Typography>
         </CardContent>
         <CardActions style={{ justifyContent: "center" }}>
           <Button size="small" className='form-btn' style={{ padding: "8px 12px", marginBottom: "10px" }}>Add to cart <AddShoppingCart style={{ marginLeft: "10px" }} /></Button>

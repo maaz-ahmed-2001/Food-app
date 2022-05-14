@@ -24,6 +24,7 @@ export default function SellerSignUp() {
     if(confirmPassword === password){
       console.log("passwords match ",error)
     }
+    localStorage.setItem("Role","seller")
     navigate("/sellerHome")
   }
 

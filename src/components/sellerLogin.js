@@ -7,7 +7,8 @@ export default function SellerLogin() {
   const props = {
     title:"Ready to cook? Login then.",
     link:"sellerSignup",
-    landing:"seller"
+    landing:"seller",
+    role:"seller"
   }
 
 

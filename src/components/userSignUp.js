@@ -25,6 +25,7 @@ export default function UserSignUp() {
     if(confirmPassword === password){
 
     }
+    localStorage.setItem("Role","customer")
     navigate("/sellerHome")
   }
 

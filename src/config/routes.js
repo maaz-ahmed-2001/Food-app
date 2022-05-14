@@ -7,7 +7,11 @@ import SellerSignUp from "../components/sellerSignUp";
 import SellerLogin from "../components/sellerLogin";
 import UserHome from "../views/UserHome";
 import SellerHome from "../views/SellerHome";
-
+import SellerDishes from "../views/SellerDishes";
+import Cart from "../views/Cart"
+import MyDishes from "../views/MyDishes";
+import SellerOrder from "../views/SellerOrder";
+import OrderStatus from "../views/OrderStatus";
 
 
 export default function Routings() {
@@ -21,6 +25,11 @@ export default function Routings() {
             <Route path="/sellerSignup" element={<SellerSignUp/>} />
             <Route path="/userHome" element={<UserHome/>} />
             <Route path="/sellerHome" element={<SellerHome/>} />
+            <Route path="/sellerDishes" element={<SellerDishes/>} />
+            <Route path="/myOrders" element={<SellerOrder/>} />
+            <Route path="/orderStatus" element={<OrderStatus/>} />
+            <Route path="/cart" element={<Cart/>} />
+            <Route path="/myDishes" element={<MyDishes/>} />
         </Routes>
     </BrowserRouter>
   )

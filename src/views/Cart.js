@@ -1,19 +1,18 @@
 import { Grid } from '@mui/material'
 import React from 'react'
-import Navbar from '../components/Navbar'
 import HomeTitle from '../components/homeTitle'
+import Navbar from '../components/Navbar'
 
-function SellerHome() {
-  const pages = ['Add dish','Orders Recieved' , 'Orders Processed' , 'Orders Rejected' , 'My Dishes'];
-
+function Cart() {
+  const pages = ['Foods','Orders Accepted' , 'Orders Pending' , 'Orders Rejected' , 'Cart'];
   return (
     <Grid container className='user-homepage-container'>
       <Navbar pages={pages}/>
-      <HomeTitle title="Add Dish"/>
+      <HomeTitle title="Cart"/>
       
 
     </Grid>
   )
 }
 
-export default SellerHome
+export default Cart
