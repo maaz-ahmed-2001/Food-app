@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,26 +10,49 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(item, name, cellNum, amount, status) {
-  return {
-    item,
-    name,
-    cellNum,
-    amount,
-    status,
-  };
-}
 
-const rows = [
-  createData('Cupcake','Maaz Ahmed', 1234567, 300, "pending"),
-  createData('Donut','Ali Hussain', 1234567, 500, "rejected"),
-  createData('Eclair','Ahmed Khan', 1234567, 1050, "processed")
+const data = [
+  {
+    item: "item",
+    custName: "ABC",
+    cellNum: "12345678",
+    amount: 900,
+    status: "pending"
+  },
+  {
+    item: "item",
+    custName: "ABC",
+    cellNum: "12345678",
+    amount: 300,
+    status: "rejected"
+  }, {
+    item: "item",
+    custName: "ABC",
+    cellNum: "12345678",
+    amount: 1400,
+    status: "processed"
+  }, {
+    item: "item",
+    custName: "ABC",
+    cellNum: "12345678",
+    amount: 900,
+    status: "pending"
+  },
+]
 
-];
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -68,7 +92,7 @@ const headCells = [
     label: 'Item',
   },
   {
-    id: 'name',
+    id: 'custName',
     numeric: true,
     disablePadding: false,
     label: 'Customer Name',
@@ -83,7 +107,7 @@ const headCells = [
     id: 'amount',
     numeric: true,
     disablePadding: false,
-    label: 'Amount (Rs.)',
+    label: 'Amount ',
   },
   {
     id: 'status',
@@ -105,7 +129,9 @@ function EnhancedTableHead(props) {
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            color="primary"
+            sx={{color:"rgb(230, 160, 70)"}}
+            // color="secondary"
+            color='default'
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
@@ -149,14 +175,81 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
+const EnhancedTableToolbar = (props) => {
+  const { numSelected } = props;
 
+  return (
+    <Toolbar
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        ...(numSelected > 0 && {
+          bgcolor: (theme) =>
+            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+        }),
+      }}
+    >
+      {numSelected > 0 ? (
+        <Typography
+          sx={{ flex: '1 1 100%' }}
+          color="inherit"
+          variant="subtitle1"
+          component="div"
+        >
+          {numSelected} selected
+        </Typography>
+      ) : (
+        <Typography
+          sx={{ flex: '1 1 100%', fontWeight: 700, color: "#555" }}
+          variant="h6"
+          id="tableTitle"
+          component="div"
+        >
+          All Orders
+        </Typography>
+      )}
+
+      {numSelected > 0 ? (
+        <>
+          <Tooltip title="Accept Order(s)">
+            <IconButton>
+              <DoneIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Order(s) Dispatched">
+            <IconButton>
+              <DeliveryDiningIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Reject Order(s)">
+            <IconButton>
+              <CloseIcon />
+            </IconButton>
+          </Tooltip>
+
+        </>
+      ) : (
+        <Tooltip title="Filter list">
+          <IconButton>
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
+      )}
+    </Toolbar>
+  );
+};
+
+EnhancedTableToolbar.propTypes = {
+  numSelected: PropTypes.number.isRequired,
+};
 
 export default function SellerOrderTable() {
+  console.log(data)
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('name');
+  const [orderBy, setOrderBy] = React.useState('custName');
   const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);  
-  const rowsPerPage = 10
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -166,7 +259,7 @@ export default function SellerOrderTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.item);
+      const newSelecteds = data.map((n) => n.item);
       setSelected(newSelecteds);
       return;
     }
@@ -197,17 +290,26 @@ export default function SellerOrderTable() {
     setPage(newPage);
   };
 
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
-  const isSelected = (item) => selected.indexOf(item) !== -1;
+
+
+  const isSelected = (item,index) => { 
+    return (selected.indexOf(item) !== -1)
+
+  }
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
   return (
-    <Box sx={{ width: '95vw' ,m:"30px auto"}}>
+    <Box sx={{ width: '95vw', m: "20px auto" }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        
+        <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -220,30 +322,31 @@ export default function SellerOrderTable() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={data.length}
             />
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(data, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.item);
+                .map((data, index) => {
+                  const isItemSelected = isSelected(data.item,index);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.item)}
+                      onClick={(event) => handleClick(event, data.item)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.item}
+                      key={`${data.item}+${data.custName}+${data.amount}+${data.num}` + index}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
-                          color="primary"
+                          sx={{color:"rgb(230, 160, 70)"}}
+                          color="default"
                           checked={isItemSelected}
                           inputProps={{
                             'aria-labelledby': labelId,
@@ -256,12 +359,12 @@ export default function SellerOrderTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.item}
+                        {data.item}
                       </TableCell>
-                      <TableCell align="right">{row.name}</TableCell>
-                      <TableCell align="right">{row.cellNum}</TableCell>
-                      <TableCell align="right">{row.amount}</TableCell>
-                      <TableCell align="right">{row.status}</TableCell>
+                      <TableCell align="right">{data.custName}</TableCell>
+                      <TableCell align="right">{data.cellNum}</TableCell>
+                      <TableCell align="right">{data.amount}</TableCell>
+                      <TableCell align="right">{data.status}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -278,14 +381,18 @@ export default function SellerOrderTable() {
           </Table>
         </TableContainer>
         <TablePagination
+
           component="div"
-          count={rows.length}
-          rowsPerPage={10}
+          count={data.length}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[5, 10, 15]}
           page={page}
+          labelRowsPerPage=""
           onPageChange={handleChangePage}
-          
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+
     </Box>
   );
 }

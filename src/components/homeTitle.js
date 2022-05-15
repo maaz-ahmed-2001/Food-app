@@ -19,52 +19,54 @@ function HomeTitle(props) {
 
             <Box className='title' sx={{ textAlign: { xs: "center", sm: "left" }, m: 0 }}>{props.title}</Box>
 
-            <Box sx={{ width: { xs: "100%", sm: "fit-content" }, display: { xs: "flex" }, justifyContent: { xs: "flex-end" } }}>
-                <Box >
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: { xs: 70, sm: 100 }, }} size={"small"} className="filter-select">
-                        <InputLabel
-                            id="demo-simple-select-helper-label"
-                            sx={{ fontSize: { xs: 10, sm: 14 } }}
-                        >Category</InputLabel>
-                        <Select
-                            autoWidth={true}
-                            labelId="demo-simple-select-helper-label"
-                            id="demo-simple-select-helper"
-                            value={category}
-                            label="category"
-                            onChange={handleCategory}
-                            sx={{ borderColor: "rgb(230, 160, 70)", fontSize: { xs: 10, sm: 14 } }}
+            {props.title === "My Dishes" || props.title === "Order Food" ?
+                <Box sx={{ width: { xs: "100%", sm: "fit-content" }, display: { xs: "flex" }, justifyContent: { xs: "flex-end" } }}>
+                    <Box >
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: { xs: 70, sm: 100 }, }} size={"small"} className="filter-select">
+                            <InputLabel
+                                id="demo-simple-select-helper-label"
+                                sx={{ fontSize: { xs: 10, sm: 14 } }}
+                            >Category</InputLabel>
+                            <Select
+                                autoWidth={true}
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={category}
+                                label="category"
+                                onChange={handleCategory}
+                                sx={{ borderColor: "rgb(230, 160, 70)", fontSize: { xs: 10, sm: 14 } }}
 
-                        >
-                            <MenuItem value={"all"}>All</MenuItem>
-                            <MenuItem value={"desi"}>Desi</MenuItem>
-                            <MenuItem value={"bbq"}>BBQ</MenuItem>
-                            <MenuItem value={"chinese"}>Chinese</MenuItem>
-                            <MenuItem value={"fast food"}>Fast Food</MenuItem>
-                        </Select>
-                    </FormControl>
+                            >
+                                <MenuItem value={"all"}>All</MenuItem>
+                                <MenuItem value={"desi"}>Desi</MenuItem>
+                                <MenuItem value={"bbq"}>BBQ</MenuItem>
+                                <MenuItem value={"chinese"}>Chinese</MenuItem>
+                                <MenuItem value={"fast food"}>Fast Food</MenuItem>
+                            </Select>
+                        </FormControl>
 
-                    <FormControl sx={{ m: 1, minWidth: { xs: 70, sm: 100 }, }} variant="standard" size={"small"} className="filter-select">
-                        <InputLabel
-                            id="demo-simple-select-helper-label"
-                            sx={{ borderColor: "rgb(230, 160, 70)", fontSize: { xs: 10, sm: 14 } }}
-                        >Price</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-helper-label"
-                            id="demo-simple-select-helper"
-                            value={price}
-                            label="Price"
-                            onChange={handlePrice}
-                            sx={{ borderColor: "rgb(230, 160, 70)", fontSize: { xs: 10, sm: 14 } }}
+                        <FormControl sx={{ m: 1, minWidth: { xs: 70, sm: 100 }, }} variant="standard" size={"small"} className="filter-select">
+                            <InputLabel
+                                id="demo-simple-select-helper-label"
+                                sx={{ borderColor: "rgb(230, 160, 70)", fontSize: { xs: 10, sm: 14 } }}
+                            >Price</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={price}
+                                label="Price"
+                                onChange={handlePrice}
+                                sx={{ borderColor: "rgb(230, 160, 70)", fontSize: { xs: 10, sm: 14 } }}
 
-                        >
-                            <MenuItem value={"low"}>Low to High</MenuItem>
-                            <MenuItem value={"high"}>High to Low</MenuItem>
+                            >
+                                <MenuItem value={"low"}>Low to High</MenuItem>
+                                <MenuItem value={"high"}>High to Low</MenuItem>
 
-                        </Select>
-                    </FormControl>
-                </Box>
-            </Box>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                </Box> : null
+            }
 
         </Grid>
     )
